@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+
+<title>Student</title>
+<style>
+body{
+background-image:url("https://www.incimages.com/uploaded_files/image/1024x576/getty_655998316_2000149920009280219_363765.jpg");
+background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size:cover;
+ hight:100vh;
+}
+ </style>
+</head>
+<body>
+<div class="loader-container">
+  <img draggable="false" src="assests/images/preloader.gif" alt="">
+</div>
+
+	<div class="container">
+		<div>
+			<nav
+				class="navbar navbar-expand-lg navbar navbar-dark bg-dark fixed-top">
+				<a class="navbar-brand" href="#">Home</a>
+					data-target="#navbarText" aria-controls="navbarText"
+					aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				<button class="navbar-toggler" type="button" data-toggle="collapse"></button>
+
+				<div class="collapse navbar-collapse" id="navbarText">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item active"><a class="nav-link" href="#">Students
+								<span class="sr-only">(current)</span>
+						</a></li>
+						<li class="nav-item"><a class="nav-link"
+							th:href="@{/addNewStudent}">Add new student</a></li>
+						<li class="nav-item active"><a class="nav-link"
+							th:href="@{/contactme}">Contact Us <span class="sr-only">(current)</span>
+						</a></li>
+						<li class="nav-item"><a class="nav-link" th:href="@{/Logout}">Logout</a></li>
+                       
+								
+								
+					</ul>
+
+				</div>
+			</nav>
+		</div>
+		<br>
+		<div style="margin-top: 2rem;">
+
+			<h1 class="row">List of Students</h1>
+			<a th:href="@{/addNewStudent}" class="btn btn-primary btn-smmb-3">Add
+				new student</a>
+
+
+			<table class="table table-striped table-bordered">
+				<thead class="table-dark">
+					<tr>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Fav Subject</th>
+						<th>Action</th>
+
+					</tr>
+				</thead>
+				<tbody>
+
+					<tr th:each="student : ${studentsList} ">
+						<td th:text="${student.firstname}"></td>
+						<td th:text="${student.lastname}"></td>
+						<td th:text="${student.favSub}"></td>
+						<td><a
+							th:href="@{/deleteStudent/{id}(id=${student.rollNum})}"
+							class="btn btn-danger">Delete</a> <a
+							th:href="@{/updateStudent/{id}(id=${student.rollNum})}"
+							class="btn btn-secondary">Update</a></td>
+					</tr>
+				</tbody>
+
+			</table>
+
+		</div>
+		
+
+	</div>
+
+</body>
+</html>
